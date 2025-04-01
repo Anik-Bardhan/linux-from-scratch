@@ -5,6 +5,8 @@ cat packages.csv | while read line; do
     MD5SUM="`echo $line | cut -d\; -f4`"
     CACHEFILE="$(basename "$URL")"
 
+    echo "Package $NAME-$VERSION"
+
     if [ ! -f "$CACHEFILE" ]; then
 
         echo "Downloading $URL"
