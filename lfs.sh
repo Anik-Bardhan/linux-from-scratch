@@ -26,6 +26,14 @@ case $(uname -m) in
 esac
 
 cp -rf *.sh packages.csv "$LFS/sources"
+
+if [ -d ./sources ] && ls ./sources/*.tar.* >/dev/null 2>&1; then
+    cp -rf ./sources/*.tar.* "$LFS/sources"
+    echo "Copied external sources"
+else
+    echo "No external sources found in /sources"
+fi
+
 cd "$LFS/sources"
 export PATH=$LFS/tools/bin:$PATH
 
