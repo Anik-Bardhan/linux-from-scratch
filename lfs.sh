@@ -25,7 +25,7 @@ case $(uname -m) in
     x86_64) mkdir -pv $LFS/lib64 ;;
 esac
 
-cp -rf *.sh packages.csv "$LFS/sources"
+cp -rf *.sh ch* packages.csv "$LFS/sources"
 
 if [ -d ./sources ] && ls ./sources/*.tar.* >/dev/null 2>&1; then
     cp -rf ./sources/*.tar.* "$LFS/sources"
@@ -38,3 +38,8 @@ cd "$LFS/sources"
 export PATH=$LFS/tools/bin:$PATH
 
 source download.sh
+
+# glibc gcc binutils linux libstdc++
+for package in linux gcc libstdc++; do
+    source packageinstall.sh 5 $package
+done
